@@ -1,0 +1,15 @@
+{
+    "contents" : "# History files\n.Rhistory\n\n# Example code in package build process\n*-Ex.R",
+    "created" : 1378514215416.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3479329487",
+    "id" : "1E133F73",
+    "lastKnownWriteTime" : 1378514232,
+    "path" : "~/Documents/Development/ecbtools/.gitignore",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "text"
+}
