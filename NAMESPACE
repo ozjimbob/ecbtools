@@ -1,0 +1,3 @@
+exportPattern("^[[:alpha:]]+")
+import(raster,cramer,mvs,mvcs)
+export(darkpix,darkpix.dir)
