@@ -1,3 +1,3 @@
 exportPattern("^[[:alpha:]]+")
-import(raster,cramer,mvs,mvcs)
+import(raster,cramer,mvs,mvcs,perlin_noise)
 export(darkpix,darkpix.dir)
