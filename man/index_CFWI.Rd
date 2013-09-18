@@ -13,25 +13,25 @@ index_CFWI(Month, Days, Temp, Dew, WS, Rain, daylist)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Month}{
-%%     ~~Describe \code{Month} here~~
+Vector of decimal months of observations.
 }
   \item{Days}{
-%%     ~~Describe \code{Days} here~~
+Vector of Julian days of observations.
 }
   \item{Temp}{
-%%     ~~Describe \code{Temp} here~~
+Vector of temperature (°C)
 }
   \item{Dew}{
-%%     ~~Describe \code{Dew} here~~
+Vector of dew Point (°C)
 }
   \item{WS}{
-%%     ~~Describe \code{WS} here~~
+Wind speed (km/h)
 }
   \item{Rain}{
-%%     ~~Describe \code{Rain} here~~
+Vector of rain (mm)
 }
   \item{daylist}{
-%%     ~~Describe \code{daylist} here~~
+Day length vector for each day of year.
 }
 }
 \details{
@@ -45,10 +45,10 @@ index_CFWI(Month, Days, Temp, Dew, WS, Rain, daylist)
 %% ...
 }
 \references{
-%% ~put references to the literature/web site here ~
+Van Wagner, C. E., & Pickett, T. L. (1985). Equations and FORTRAN Program for the Canadian Forest Fire Weather Index System (Vol. 33).
 }
 \author{
-%%  ~~who you are~~
+Grant Williamson
 }
 \note{
 %%  ~~further notes~~
