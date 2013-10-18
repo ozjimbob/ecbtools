@@ -1,14 +1,14 @@
-\name{pointDistSample}
-\alias{pointDistSample}
+\name{pointnnSample}
+\alias{pointnnSample}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Subsamples spatial points with bias against dense points.
+Subsamples spatial points with bias against close points.
 }
 \description{
 This function takes a subsample of points in a SpatialPointsDataFrame object.  The subsample is biased towards removing points that are close to other points, therefore reducing the density of highly dense areas.  This may be useful in bias adjusting species distribution patterns away from densely sampled areas.  
 }
 \usage{
-pointDistSample(points, sample.size,id=T)
+pointnnSample(points, sample.size, id = T)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,12 +18,12 @@ A SpatialPointsDataFrame object.
   \item{sample.size}{
 The number of points to retain in the sample.
 }
- \item{id}{
+  \item{id}{
 Square-root weighting.
 }
 }
 \details{
-Distance from each point to each other point is calculated, and a mean neighbour distance for each point is determined.  Distances are normalized, and points with a greater mean distance to other points have a greater probability of being sampled.
+Distance from each point to the nearest neighbour is calculated.  Distances are normalized, and points with a greater mean distance to other points have a greater probability of being sampled.
 }
 \value{
 A SpatialPointsData Frame.
