@@ -253,7 +253,30 @@ index_FFDI <- function(Temperature, Rain, DewPoint,Wind, KBDI){
   McA_list
 }
 
-
+index_DF <- function(Temperature,Rain,KBDI){
+  McA<-0.0
+  McA_list <- c()
+  llength<-length(Temperature)
+  DSinceRain<-0
+  LastRain<-0.0
+  for(day in 1:llength) {
+    if(Rain[day] > 0.0){
+      LastRain <- Rain[day]
+      DSinceRain <- 0
+    }else{
+      DSinceRain <- DSinceRain + 1
+    }
+    
+    DF <- (0.191 * (KBDI[day] + 104.0)*(DSinceRain+1)**1.5) / ((3.52*(DSinceRain+1)**1.5)+LastRain-1.0)
+    if(DF > 10.0){
+      DF <- 10
+    }
+    
+    #F <- 1.25 * DF * exp(((Temperature[day] - Humid)/30)+0.0234*Wind[day])
+     McA_list <- append(McA_list,DF)
+  }
+  McA_list
+}
 
 #McArthur Fire Index From Drought Factor
 
