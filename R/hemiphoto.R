@@ -1,15 +1,23 @@
 
-darkpix=function(file,cutoff=128,clip.circle=T)
+darkpix=function(file,cutoff=100,clip.circle=T)
 {
   img<-stack(file) # Load JPG as a raster stack (3 layers)
   k1=img@layers[1] # Isolate each layer into a separate raster
   k2=img@layers[2]
   k3=img@layers[3]
+  
+  ratioB = k3[[1]] / (k1[[1]] + k2[[1]])
+ # bw = (k1[[1]] + k2[[1]] + k3[[1]]) / 3
+  
   img=(k1[[1]] + k2[[1]] + k3[[1]]) / 3  # Calculate the mean of the three layers, put in new raster (img)
   #m <- c(0, 1, 255,  2, cutoff-1, 0, cutoff-1, 255, 255)  # Define reclassification matrix
   #img=reclass(img,m) # Reclassify raster
+  ratioC=ratioB < .7
   h=img<cutoff # Set values less that cutoff to TRUE
-    
+  oo = h==1 & ratioC == 1
+  
+  h=oo
+  
   if(clip.circle){
   # Mask circle
   
@@ -57,7 +65,7 @@ darkpix=function(file,cutoff=128,clip.circle=T)
   (pres/(pres+abs))*100  # TRUE / Total pixels * 100 
 }
 
-darkpix.dir=function(directory,pattern="jpg",cutoff=128,clip.circle=T){
+darkpix.dir=function(directory,pattern="jpg",cutoff=100,clip.circle=T){
   file_list=list.files(directory,pattern=pattern)
   output=data.frame(ID=seq_along(file_list),files=file_list,cover=NA)
   for(idx in 1:length(file_list)){
