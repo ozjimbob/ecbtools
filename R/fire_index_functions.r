@@ -12,6 +12,73 @@
 
 #kbdilookup <- read.csv("E:\\NASA_NERP\\HotspotFFDI\\NASA_NERP_Hotspot FFDI\\kbdi.csv",header=T)
 
+## Lookup evapotranspiration for given temperature and SDI
+get_et=function(Temp,SDI){
+  ET_Table=matrix(c(1,2,4,5,7,8,9,11,13,15,17,19,21,23,25,27,
+                    1,2,3,3,4,5,6,8,10,12,14,16,18,20,22,24,
+                    0,0,1,1,2,3,4,6,8,10,12,14,16,18,20,22,
+                    0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,
+                    0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3),nrow=5,ncol=16,byrow=T)
+  temp_list=c(30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105)
+  SDI_list=c(0,100,200,550,650)
+  if(Temp < 30){return(0)}
+  if(SDI < 1){SDI=1}
+  temp_col=max(which(Temp > temp_list))
+  sdi_row=max(which(SDI > SDI_list))
+  ETval=ET_Table[sdi_row,temp_col]
+  ETval
+}
+
+# Calculate Mount's SDI (soil dryness index)
+index_SDI=function(Rain,Temperature){
+  
+  SDI=rep(1,length(Rain))
+  Canopy_water=rep(0,length(Rain))
+  
+  o_frame=data.frame(SDI=SDI,Canopy_water=Canopy_water,
+                     Rain=rep(0,length(SDI)),
+                     ET=rep(0,length(SDI)),
+                     runoff=rep(0,length(SDI)),
+                     interception=rep(0,length(SDI)),
+                     P_eff=rep(0,length(SDI)))
+  
+  R=0.3
+  Cc=8
+  W=2
+  FR = 1/40
+  
+  
+  for(idx in 2:length(Rain)){
+    
+    RainY = Rain[idx-1]/.254
+    TempF = Temperature[idx] * (9/5) + 32
+    SDIY = SDI[idx-1]
+    
+    
+    
+    C_frac = R * RainY + Canopy_water[idx-1]
+    if(C_frac <= Cc){
+      interception= R * RainY
+    }else{
+      interception=Cc-Canopy_water[idx-1]
+    }
+    
+    if(RainY > 0){
+      Canopy_water[idx]= Canopy_water[idx-1] + interception - W
+    }else{
+      Canopy_water[idx] = 0
+    }
+    
+    runoff = FR * RainY
+    ET = get_et(TempF,SDIY)
+    P_eff = RainY - interception - runoff
+    SDI[idx] = max(0,SDIY - P_eff + ET)
+    
+  }
+  SDI*.254
+  
+}
+
 
 # Convert degrees to radians
 radians <- function(deg){
