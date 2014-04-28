@@ -35,7 +35,7 @@ BISE=function(x,slide_period=20,slope_threshold=0.2){
     }
     
   }
-  cor_x=cor_x[days:(days*2)]
+  cor_x=cor_x[(days+1):((days*2)+1)]
   
   for(i in 2:length(cor_x)){
     if(cor_x[i]==-1)
