@@ -1,6 +1,6 @@
 ecb_mod=function(data,
                  term.names,
-                 response,
+                 resp,
                  random.def,
                  model.family=gaussian(),
                  model.type="lm"){
