@@ -1,4 +1,4 @@
-ecbtools
+ecbtools ![Build Status](https://travis-ci.org/ozjimbob/ecbtools.svg)
 ========
 
 An R library of tools developed by the University of Tasmania Environmental Change Biology lab.
