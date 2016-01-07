@@ -13,7 +13,7 @@ grid_points(points, spacing = 25, gridsize = 3)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{points}{
-A SpatialPointsDataFrame object, which can be loaded from a shapefile using the \code{\link{readShapePoints}} command of the \code{\link{maptools}} package.
+A SpatialPointsDataFrame object, which can be loaded from a shapefile using the \code{\link{readShapePoints}} command of the package.
 }
   \item{spacing}{
 The spacing between lines of the grid. The default is 25.  This value is expressed in the same coordinate system as the input spatial data, so be aware that for data in geographic (latitude/longitude) projections, this value represents degrees.

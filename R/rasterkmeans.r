@@ -33,7 +33,7 @@ raster.kmeans=function(x,k=12,iter.max=100,nstart=10,geo=T,geo.weight=1){
   
   oDFi$cluster=E$cluster
   
-  of=join(oDFk,oDFi,by="idx",type="left")
+  of=plyr::join(oDFk,oDFi,by="idx",type="left")
   
   EM <- matrix(of$cluster, nrow=stk@nrows,ncol=stk@ncols, byrow=TRUE)
   E.raster <- raster(EM,crs=stk@crs, xmn=stk@extent@xmin, ymn=stk@extent@ymin, xmx=stk@extent@xmax, ymx=stk@extent@ymax)
