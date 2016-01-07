@@ -1,4 +1,3 @@
-exportPattern("^[[:alpha:]]+")
 import(plyr,raster,cramer,sp,maptools,fields,mgcv,reshape2,spatstat,MASS,lme4,combinat)
 export(darkpix,index_DF,darkpix.dir,mvs,mvcs,perlin_noise,radians,degrees,sunaltitude,dayintegral,hourwatt,daylengths,calc_dew,calc_humid,
        DF_SMD,index_FFDI,index_FFDI_DF,index_FFDI_G4,index_KBDI,index_NI,index_Z,index_MNI,index_Sharples,index_Sharples_DF,
