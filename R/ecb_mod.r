@@ -4,10 +4,6 @@ ecb_mod=function(data,
                  random.def,
                  model.family=gaussian(),
                  model.type="lm"){
-  require(combinat)
-  require(lme4)
-  require(MASS)
-  
   
   n.terms <- length(term.names)
   resp.mod <- paste(resp,"~",sep="")

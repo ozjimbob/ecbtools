@@ -3,7 +3,6 @@ Type: Package
 Title: Environmental Change Biology Tools.
 Version: 0.1
 Date: 2016-01-05
-Imports: raster,cramer,sp,maptools,fields,mgcv,reshape2,spatstat,MASS,lme4,combinat
 Depends: raster,cramer,sp,maptools,fields,mgcv,reshape2,spatstat,MASS,lme4,combinat
 Author: Grant Williamson <grant.williamson@utas.edu.au>
 Maintainer: Grant Williamson <grant.williamson@utas.edu.au>
