@@ -11,4 +11,4 @@ This library contains a diverse set of R functions, including;
 * Analysis of tree cover from hemispherical/fish-eye photos.
 * Sun altitude and day length calculations.
 
-Functions were developed by Grant Williamson (grant.williamson@utas.edu.au).
+Functions were developed by Dr Grant Williamson (grant.williamson@utas.edu.au).
