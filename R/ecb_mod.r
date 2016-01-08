@@ -14,13 +14,13 @@ ecb_mod=function(data,
   
   l.dim <- 0
   for (m in 1:(n.terms)) {
-    l.dim[m] <- length(combn(term.names,m,simplify=F))
+    l.dim[m] <- length(combinat::combn(term.names,m,simplify=F))
   }
   
   mod_list=c()
   
   for (y in 1:n.terms) {
-    lll  <- combn(term.names,y,simplify=F)
+    lll  <- combinat::combn(term.names,y,simplify=F)
     col_list=sapply(lll,paste,collapse="+")
     mod_list=c(mod_list,col_list)
     

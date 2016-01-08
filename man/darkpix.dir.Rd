@@ -8,7 +8,7 @@ Process hemispherical photo directory.
 Processes a directory if image files, counts dark percentage and produces data table.
 }
 \usage{
-darkpix.dir(directory, pattern = "jpg")
+darkpix.dir(directory, pattern = "jpg", cutoff = 100, clip.circle = T)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -17,6 +17,12 @@ String with path to directory to be processed.
 }
   \item{pattern}{
 A pattern, suitable for the \code{\link{list.files}} function, indicating which image files to load. "jpg" is the most common, but "JPG" or "JPEG" may be produed by some cameras.
+}
+  \item{cutoff}{
+Cutoff brighness level, 0-255.
+}
+  \item{clip.circle}{
+Clip processing to a central circle in the image, otherwise use entire image.
 }
 }
 \details{

@@ -1,7 +1,7 @@
 
 darkpix=function(file,cutoff=100,clip.circle=T)
 {
-  img<-stack(file) # Load JPG as a raster stack (3 layers)
+  img<-raster::stack(file) # Load JPG as a raster stack (3 layers)
   k1=img@layers[1] # Isolate each layer into a separate raster
   k2=img@layers[2]
   k3=img@layers[3]
@@ -53,8 +53,8 @@ darkpix=function(file,cutoff=100,clip.circle=T)
   
     # A lot of the raster code below is so we can plot nice images if we want to. 
     # We could just deal with raw matrices from this point, but it's not that much faster really.
-    cc=raster(cc)
-    extent(cc)=extent(h)
+    cc=raster::raster(cc)
+    extent(cc)=raster::extent(h)
     # Clip circle
     h=h*cc
   }

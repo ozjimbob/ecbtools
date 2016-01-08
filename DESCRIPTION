@@ -1,9 +1,9 @@
 Package: ecbtools
 Type: Package
 Title: Environmental Change Biology Tools
-Version: 0.1
+Version: 0.2
 Date: 2016-01-05
-Imports: plyr,raster,cramer,sp,maptools,fields,mgcv,reshape2,spatstat,MASS,lme4,combinat
+Imports: plyr,raster,cramer,sp,maptools,fields,mgcv,reshape2,spatstat,MASS,lme4,combinat,colorspace
 Author: Grant Williamson <grant.williamson@utas.edu.au>
 Maintainer: Grant Williamson <grant.williamson@utas.edu.au>
 Description: Provides functions developed by the Environmental Change Biology lab at the University of Tasmania, including functions to determine canopy cover from hemispherical/fish eye photos, and stratified sample plot placement functions.

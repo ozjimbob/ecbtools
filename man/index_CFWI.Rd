@@ -19,10 +19,10 @@ Vector of decimal months of observations.
 Vector of Julian days of observations.
 }
   \item{Temp}{
-Vector of temperature (°C)
+Vector of temperature (C)
 }
   \item{Dew}{
-Vector of dew Point (°C)
+Vector of dew Point (C)
 }
   \item{WS}{
 Wind speed (km/h)
@@ -210,5 +210,5 @@ function (Month, Days, Temp, Dew, WS, Rain, daylist)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ ~fire }
+\keyword{ ~cfwi }% __ONLY ONE__ keyword per line

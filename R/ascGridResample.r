@@ -5,17 +5,17 @@ ascGridResample=function(x,template,filename=""){
     template=raster(x)
   }
   
-  proj4string(template)=CRS("+proj=longlat +datum=WGS84")
+  sp::proj4string(template)=CRS("+proj=longlat +datum=WGS84")
   if(class(x)[1]=="RasterLayer"){  
     the_raster_file=x
   }else{
-    the_raster_file=raster(x)
+    the_raster_file=raster::raster(x)
   }
-  proj4string(the_raster_file)=CRS("+proj=longlat +datum=WGS84")
-  h=resample(the_raster_file,template)
-  extent(h)=extent(template)
+  sp::proj4string(the_raster_file)=CRS("+proj=longlat +datum=WGS84")
+  h=raster::resample(the_raster_file,template)
+  raster::extent(h)=extent(template)
   tf=tempfile(fileext=".asc")
-  writeRaster(h,tf,format="ascii",overwrite=T)
+  raster::writeRaster(h,tf,format="ascii",overwrite=T)
   
   header=file(template@file@name,"w+")
   head_lines=readLines(header,6)

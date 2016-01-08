@@ -11,10 +11,10 @@ grid_points=function(points,spacing=25,gridsize=3){
   
     this_points=points@data
     j=nrow(points)
-    if(dim(coordinates(points))[2]==3){
-      coordinates(this_points)=coordinates(points)+c(rep(xmat[idx],j),rep(ymat[idx],j),rep(0,j))
+    if(dim(sp::coordinates(points))[2]==3){
+      sp::coordinates(this_points)=sp::coordinates(points)+c(rep(xmat[idx],j),rep(ymat[idx],j),rep(0,j))
     }else{
-      coordinates(this_points)=coordinates(points)+c(rep(xmat[idx],j),rep(ymat[idx],j))
+      sp::coordinates(this_points)=sp::coordinates(points)+c(rep(xmat[idx],j),rep(ymat[idx],j))
     }
     this_points$SubPointID=idx
   

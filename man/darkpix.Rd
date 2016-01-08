@@ -8,7 +8,7 @@ Calculates percentage of dark pixels in an image.
 This function takes a colour image file, typically a JPEG, and counts the percentage of pixels below a certain darkness threshold.  By default, only a central circle representing the hemispherical horizon is counted.  The threshold at which darkness is detected can be altered.
 }
 \usage{
-darkpix(file, cutoff = 128, clip.circle = T)
+darkpix(file, cutoff = 100, clip.circle = T)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

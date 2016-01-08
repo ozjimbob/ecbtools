@@ -4,12 +4,12 @@ raster.kmeans=function(x,k=12,iter.max=100,nstart=10,geo=T,geo.weight=1){
     stk=x
   }else{
     stl=list.files(x)
-    stk=stack(stl)
+    stk=raster::stack(stl)
   }
   
   
   oDF=as.data.frame(stk)
-  oo=xyFromCell(stk,1:(stk@ncols * stk@nrows))
+  oo=raster::xyFromCell(stk,1:(stk@ncols * stk@nrows))
   if(geo==T){
     oDF$x=oo[,1]
     oDF$y=oo[,2]
@@ -36,6 +36,6 @@ raster.kmeans=function(x,k=12,iter.max=100,nstart=10,geo=T,geo.weight=1){
   of=plyr::join(oDFk,oDFi,by="idx",type="left")
   
   EM <- matrix(of$cluster, nrow=stk@nrows,ncol=stk@ncols, byrow=TRUE)
-  E.raster <- raster(EM,crs=stk@crs, xmn=stk@extent@xmin, ymn=stk@extent@ymin, xmx=stk@extent@xmax, ymx=stk@extent@ymax)
+  E.raster <- raster::raster(EM,crs=stk@crs, xmn=stk@extent@xmin, ymn=stk@extent@ymin, xmx=stk@extent@xmax, ymx=stk@extent@ymax)
   E.raster
 }

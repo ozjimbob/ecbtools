@@ -8,7 +8,8 @@ ECB Linear Modelling Wizard
 Simple wrapper for running lm, glm, lmer, glmer and nb.glmer models on a full suite of variable combinations, outputing an AIC table and w+ variable importance table.
 }
 \usage{
-ecb_mod(data, term.names, response, random.def, model.family = gaussian(), model.type = "lm")
+ecb_mod(data, term.names, resp, random.def, model.family = gaussian(),
+model.type = "lm")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -18,7 +19,7 @@ Data frame containing the model input.
   \item{term.names}{
 Vector containing a list of the variables to be included in the model.
 }
-  \item{response}{
+  \item{resp}{
 Character string containing the response variable of the model.
 }
   \item{random.def}{
@@ -53,13 +54,12 @@ Grant Williamson (grant.williamson@utas.edu.au)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
+\dontrun{
 data=read.csv("myfile.csv")
 
-ecb_mod(data, term.names=c("MAP","Slope","Soil"), response="Height", random.def="(1|Site)", model.family = poisson(), model.type = "lmer")
+ecb_mod(data, term.names=c("MAP","Slope","Soil"), resp="Height",
+random.def="(1|Site)", model.family = poisson(), model.type = "lmer")
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

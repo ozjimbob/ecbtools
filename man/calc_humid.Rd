@@ -13,10 +13,10 @@ calc_humid(T, Dp)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{T}{
-Temperature (°C)
+Temperature (C)
 }
   \item{Dp}{
-Dew point (°C)
+Dew point (C)
 }
 }
 \details{

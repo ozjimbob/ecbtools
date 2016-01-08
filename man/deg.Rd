@@ -1,29 +1,26 @@
-\name{calc_dew}
-\alias{calc_dew}
+\name{deg}
+\alias{deg}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Calculates the dew point, based on temperature and relative humidity.
+Convert radians to degrees
 }
 \description{
-A function to convert temperature and relative humidity data into a dew point value.
+Convert radians to degrees
 }
 \usage{
-calc_dew(T, RH)
+deg(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{T}{
-Temperature (C)
-}
-  \item{RH}{
-Relative humidity (\%)
+  \item{x}{
+Angle in radians.
 }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-A variable or vector containing dew point values in C.
+Angle in degrees.
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -38,16 +35,12 @@ Grant Williamson
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{calc_humid}}
+%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-
-Temp=34
-RH=56
-dp = calc_dew(Temp,RH)
+deg(pi)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ Temperature }
-\keyword{ Humidity }% __ONLY ONE__ keyword per line
-\keyword{ Dew }
+\keyword{ ~radians }
+\keyword{ ~degrees }% __ONLY ONE__ keyword per line

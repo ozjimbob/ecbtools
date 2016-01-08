@@ -16,7 +16,10 @@ div_pal=function (n, h = c(260, 0), c = 80, l = c(22, 90), power = 0.86666666666
   return(rval)
 }
 
-timespline=function(data,datevar,plotvar,k=40,hinge=F,col=div_pal){
+rad = function(x){x * (pi/180)}
+deg = function(x){x * (180/pi)}
+
+timespline=function(data,datevar,plotvar,k=40,hinge=F,col=div_pal(256)){
   year_list=unique(format(data[,datevar],"%Y"))
   x_len=365
   y_len=length(year_list)

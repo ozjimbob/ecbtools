@@ -68,7 +68,7 @@ mvcs<-function(data,number,variables,iter=200){
     b <- as.matrix(cbind(samp[variables]))
     
     # Perform Cramer test on the two matrices
-    c <- cramer.test(b,a,sim="ordinary")
+    c <- cramer::cramer.test(b,a,sim="ordinary")
     
     # See if the results of the Cramer test are the "best yet" - if so, keep this sample
     cat(paste(c$p.value,"\n",sep=""))
@@ -84,36 +84,36 @@ mvcs<-function(data,number,variables,iter=200){
 }
 
 perlin_noise <- function( 
-  n = 5,   m = 7,    # Size of the grid for the vector field
-  N = 100, M = 100   # Dimension of the image
+  vx = 7,   vy = 8,   
+  ix = 100, iy = 100  
 ) {
-  # For each point on this n*m grid, choose a unit 1 vector
+
   vector_field <- apply(
-    array( rnorm( 2 * n * m ), dim = c(2,n,m) ),
+    array( rnorm( 2 * vx * vy ), dim = c(2,vx,vy) ),
     2:3,
     function(u) u / sqrt(sum(u^2))
   )
   f <- function(x,y) {
-    # Find the grid cell in which the point (x,y) is
+
     i <- floor(x)
     j <- floor(y)
-    stopifnot( i >= 1 || j >= 1 || i < n || j < m )
-    # The 4 vectors, from the vector field, at the vertices of the square
+    stopifnot( i >= 1 || j >= 1 || i < vx || j < vy )
+
     v1 <- vector_field[,i,j]
     v2 <- vector_field[,i+1,j]
     v3 <- vector_field[,i,j+1]
     v4 <- vector_field[,i+1,j+1]
-    # Vectors from the point to the vertices
+
     u1 <- c(x,y) - c(i,j)
     u2 <- c(x,y) - c(i+1,j)
     u3 <- c(x,y) - c(i,j+1)
     u4 <- c(x,y) - c(i+1,j+1)
-    # Scalar products
+ 
     a1 <- sum( v1 * u1 )
     a2 <- sum( v2 * u2 )
     a3 <- sum( v3 * u3 )
     a4 <- sum( v4 * u4 )
-    # Weighted average of the scalar products
+
     s <- function(p) 3 * p^2 - 2 * p^3
     p <- s( x - i )
     q <- s( y - j )
@@ -121,7 +121,7 @@ perlin_noise <- function(
     b2 <- (1-p)*a3 + p*a4
     (1-q) * b1 + q * b2
   }
-  xs <- seq(from = 1, to = n, length = N+1)[-(N+1)]
-  ys <- seq(from = 1, to = m, length = M+1)[-(M+1)]
+  xs <- seq(from = 1, to = vx, length = ix+1)[-(ix+1)]
+  ys <- seq(from = 1, to = vy, length = iy+1)[-(iy+1)]
   outer( xs, ys, Vectorize(f) )
 }
