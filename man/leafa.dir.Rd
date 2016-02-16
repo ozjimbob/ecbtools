@@ -1,14 +1,14 @@
-\name{darkpix.dir}
-\alias{darkpix.dir}
+\name{leafa.dir}
+\alias{leafa.dir}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Process hemispherical photo directory.
+Process leaf area image scan directory.
 }
 \description{
-Processes a directory of image files, counts dark percentage and produces data table.
+Processes a directory of scanned image files, calculates area of dark pixels in each and outputs a table.
 }
 \usage{
-darkpix.dir(directory, pattern = "jpg", cutoff = 100, clip.circle = T)
+leafa.dir(directory, pattern = "jpg", cutoff = 100, dpi=300)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -21,15 +21,15 @@ A pattern, suitable for the \code{\link{list.files}} function, indicating which 
   \item{cutoff}{
 Cutoff brighness level, 0-255.
 }
-  \item{clip.circle}{
-Clip processing to a central circle in the image, otherwise use entire image.
+  \item{dpi}{
+DPI (dots per inch) of scanned images.
 }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-A data frame containing the file name, and the percentage of dark pixels.
+A data frame containing the file name, and area of dark pixels in cm2.
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -47,13 +47,13 @@ Grant Williamson <grant.williamson@utas.edu.au>
 \code{\link{darkpix}}
 }
 \examples{
-#darkpix.dir("fieldtrips/photo12/",pattern="jpg")
+#leafa.dir("fieldtrips/photo12/",pattern="jpg")
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 }
-\keyword{hemispherical}
-\keyword{photo}
-\keyword{image}
-\keyword{cover}
+\keyword{ leaf }
+\keyword{ photo }
+\keyword{ image }
+\keyword{ area }

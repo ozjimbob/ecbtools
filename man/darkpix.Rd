@@ -44,8 +44,8 @@ Grant Williamson <grant.williamson@utas.edu.au>
 \code{\link{darkpix.dir}}
 }
 \examples{
-#rlogo=system.file("pictures/Rlogo.jpg", package="rgdal")[1]
-#darkpix(rlogo,cutoff=100,clip.circle=T)
+rlogo=system.file("pictures/Rlogo.jpg", package="rgdal")[1]
+darkpix(rlogo,cutoff=100,clip.circle=T)
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 }
