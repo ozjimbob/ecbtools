@@ -111,7 +111,7 @@ calc_MFDI=function(Rain,Temp,RH,Age,Time,Daily=FALSE){
     SR=get_m_rs(FM,oframe$Wind[i],oframe$Age[i])
     MFDI[i]=sr_to_mfi(SR)
   }
-  
+  MFDI
 }
 
 
