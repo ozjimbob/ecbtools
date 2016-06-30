@@ -84,8 +84,14 @@ sr_to_mfi = function(SR){
 }
 
 # Moorland Calculation
-calc_MFDI=function(Rain,Temp,RH,Age){
+calc_MFDI=function(Rain,Temp,RH,Age,Time,Daily=FALSE){
   MFDI = rep(0,length(Rain))
+  tdiff=c(0,diff(Time))
+  if(Daily==TRUE){
+    tdiff=tdiff/24
+  }else{
+  tdiff=tdiff/3600
+  }
   oframe = data.frame(Rain=Rain,Temp=Temp,RH=RH,Age=Age)
   oframe$SinceRain = 0
   SinceRain=48
@@ -94,7 +100,7 @@ calc_MFDI=function(Rain,Temp,RH,Age){
       SinceRain=0
       print("Rain")
     }else{
-      SinceRain = SinceRain + 24
+      SinceRain = SinceRain + tdiff(i)
       print("NoRain")
     }
     oframe$SinceRain[i]=SinceRain
