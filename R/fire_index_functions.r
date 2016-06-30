@@ -29,6 +29,86 @@ get_et=function(Temp,SDI){
   ETval
 }
 
+# Moorland rainfall factor lookup table
+get_m_rf=function(RainHours,RainAmount){
+  RF_Table=matrix(c(0,10,18,31,53,64,
+                  0,8,14,24,41,50,
+                  0,6,11,19,32,38,
+                  0,4,8,14,25,30,
+                  0,3,6,11,19,23,
+                  0,1,2,4,7,8,
+                  0,0,1,1,1,1),nrow=7,ncol=6,byrow=T)
+  RainAmountList=c(0,0.05,0.1,0.2,0.5,1)
+  RainHourList=c(0,3,6,9,12,24,48)
+  if(RainHours > 48){return(0)}
+  RAcol = max(which(RainAmount >= RainAmountList))
+  RHrow = max(which(RainHours >= RainHourList))
+  RFval = RF_Table[RHrow,RAcol]
+  RFval
+}
+
+# Moorland humidity factor function backcalculated from lookup table in Forestry Tas report
+get_m_hf=function(Temp,Humid){
+    Temp=max(Temp,8)
+    Temp=min(Temp,35)
+    RH=max(Humid,20)
+    RH=min(Humid,100)
+    y = exp(2.572e+00 + (-2.563e-02 * Temp) + (-3.288e-05 * Temp^2) + (5.218e-03 * Humid) + (6.673e-05 * Humid ^2))
+    y
+}
+
+# Fuel moisture function combines rain and humidity
+get_m_fm=function(Temp,Humid, RainHours,RainAmount){
+  RF = get_m_rf(RainHours,RainAmount)
+  HF = get_m_hf(Temp,Humid)
+  max(RF+HF,0)
+}
+
+# Calcualate moorland spread rate
+get_m_rs = function(FM,Wind,Age){
+  Age = min(Age,20)
+  if(FM>100){return(0)}
+  Wind = min(Wind,60)
+  a=0.678
+  b=1.312
+  c=0.0243
+  d=0.116
+  R = a * (Wind**b) * exp(-c * FM)* (1-exp(-d * Age))
+  R
+}
+
+# Convert spread rate to Moorland FI
+sr_to_mfi = function(SR){
+  FI=-0.465568 + 0.716654 * SR
+  FI
+}
+
+# Moorland Calculation
+calc_MFDI=function(Rain,Temp,RH,Age){
+  MFDI = rep(0,length(Rain))
+  oframe = data.frame(Rain=Rain,Temp=Temp,RH=RH,Age=Age)
+  oframe$SinceRain = 0
+  SinceRain=48
+  for(i in seq_along(oframe$Rain)){
+    if(oframe$Rain[i]>0){
+      SinceRain=0
+      print("Rain")
+    }else{
+      SinceRain = SinceRain + 24
+      print("NoRain")
+    }
+    oframe$SinceRain[i]=SinceRain
+  }
+  
+  for(i in seq_along(MFDI)){
+    FM=get_m_fm(oframe$Temp[i],oframe$RH[i], oframe$SinceRain[i],oframe$Rain[i])
+    SR=get_m_rs(FM,oframe$Wind[i],oframe$Age[i])
+    MFDI[i]=sr_to_mfi(SR)
+  }
+  
+}
+
+
 # Calculate Mount's SDI (soil dryness index)
 index_SDI=function(Rain,Temperature){
   
