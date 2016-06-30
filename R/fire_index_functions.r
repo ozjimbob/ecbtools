@@ -90,7 +90,7 @@ calc_MFDI=function(Rain,Temp,RH,Age,Time,Daily=FALSE){
   if(Daily==TRUE){
     tdiff=tdiff/24
   }else{
-  tdiff=tdiff/3600
+    tdiff=tdiff/3600
   }
   oframe = data.frame(Rain=Rain,Temp=Temp,RH=RH,Age=Age)
   oframe$SinceRain = 0
@@ -98,10 +98,10 @@ calc_MFDI=function(Rain,Temp,RH,Age,Time,Daily=FALSE){
   for(i in seq_along(oframe$Rain)){
     if(oframe$Rain[i]>0){
       SinceRain=0
-      print("Rain")
+
     }else{
-      SinceRain = SinceRain + tdiff(i)
-      print("NoRain")
+      SinceRain = SinceRain + tdiff[i]
+
     }
     oframe$SinceRain[i]=SinceRain
   }
