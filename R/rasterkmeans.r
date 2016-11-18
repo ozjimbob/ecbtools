@@ -3,7 +3,7 @@ raster.kmeans=function(x,k=12,iter.max=100,nstart=10,geo=T,geo.weight=1){
   if(class(x)[1]=="RasterStack"){
     stk=x
   }else{
-    stl=list.files(x)
+    stl=list.files(x,full.names = TRUE)
     stk=raster::stack(stl)
   }
   
