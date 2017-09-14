@@ -468,7 +468,7 @@ index_FFDI_G4 <- function(Temperature, DewPoint,Wind){
 }
 
 # Keetch-Byran Drought Index
-index_KBDI <- function(Temperature, Rain, MAP=sum(Rain)/length(Rain)/365.25){
+index_KBDI <- function(Temperature, Rain, MAP=sum(Rain)/(length(Rain)/365.25)){
   
   KBDI <- 200.0
   KBDI_list <- c()
