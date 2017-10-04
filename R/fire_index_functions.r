@@ -369,6 +369,7 @@ DF_SMD <- function(rain,SMD_vec){
     DF = 10.5*(1-exp(-(SMD+30)/40))*(41*x^2+x)/(40*x^2+x+1)
     DF_vec[a] = DF
   }
+  DF_vec[DF_vec > 10]=10
   DF_vec
 }
 
