@@ -9,7 +9,7 @@ raster.kmeans=function(x,k=12,iter.max=100,nstart=10,geo=T,geo.weight=1){
   }
   
   
-  oDF=as.data.frame(stk)
+  oDF=raster::as.data.frame(stk)
   oo=raster::xyFromCell(stk,1:(stk@ncols * stk@nrows))
   if(geo==T){
     oDF$x=oo[,1]
